@@ -18,6 +18,14 @@ public class Archiver {
 //        Для каждого переданного имени файлов получаем
 //        информацию и передаем
         Arrays.stream(filenames).forEach(filename->{
+//            Делаем проверку разделителей в пути для разных операционных систем
+            char winSeparator='\\';
+            char nixSeparator='/';
+//            В зависимости от разделителя который ввел пользователь
+//            будут проверены Windows и Unix разделители и если ввод был
+//            неправильным, программа заменит их на нужный разделитель
+            filename=filename.replace(winSeparator,File.separatorChar);
+            filename=filename.replace(nixSeparator,File.separatorChar);
             try {
 //                Создаем элемент
                 Item item = new Item();

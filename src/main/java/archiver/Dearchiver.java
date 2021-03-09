@@ -10,6 +10,15 @@ public class Dearchiver {
     private FileOutputStream outputStream;
     private String filename;
     public Dearchiver(String filename) {
+//        Делаем проверку разделителей в пути для разных операционных систем
+        char winSeparator='\\';
+        char nixSeparator='/';
+//            В зависимости от разделителя который ввел пользователь
+//            будут проверены Windows и Unix разделители и если ввод был
+//            неправильным, программа заменит их на нужный разделитель
+        filename=filename.replace(winSeparator,File.separatorChar);
+        filename=filename.replace(nixSeparator,File.separatorChar);
+
 //        Создаем объект архива
         archive=new Archive();
         try {

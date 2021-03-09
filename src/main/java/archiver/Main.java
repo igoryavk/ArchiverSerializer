@@ -4,12 +4,15 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-//        Archiver archiver=new Archiver(args);
-//        archiver.SerializeData();
-//        archiver.showData();
-//        archiver.ZipData();
+//         В main получим массив аргументов и после предварительной
+//         обработки переда его в те объекты, которые будут выпонять
+//         для нас архивацию/деархивацию.
+//
+//         Проверяем, что аргументы переданы
           if (args.length!=0)
           {
+//              Делаем меню выбора режимов архивации/деархивации и
+//              и проверку на неправильный ввод
               switch (args[0])
               {
                   case "-a":{
@@ -29,7 +32,16 @@ public class Main {
                       break;
                   }
                   case "-d":{
-                      Dearchiver dearchiver=new Dearchiver();
+                      if (args.length==2)
+                      {
+                          String filename=args[1];
+                          Dearchiver dearchiver=new Dearchiver(filename);
+                      }
+                      else {
+                          System.out.println("Please specify an output.arch");
+                      }
+
+
                       break;
                   }
                   default: {
@@ -45,8 +57,6 @@ public class Main {
                   System.out.println("-a LIST_OF_FILES - for archiving");
                   System.out.println("-d - for dearchiving");
               }
-//          Dearchiver dearchiver=new Dearchiver();
-//
-//          dearchiver.DeserializeData();
+
     }
 }
